@@ -195,4 +195,5 @@ tags
 [._]*.un~
 
 # End of https://www.toptal.com/developers/gitignore/api/rails,ruby,vim,emacs
-app/assets/builds
+/app/assets/builds
+/.log

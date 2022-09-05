@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # root "articles#index"
+  resources :surveys, only: %i[index show new create update]
+
+  root to: "surveys#index"
 end
