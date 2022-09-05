@@ -1,0 +1,16 @@
+{
+  "name": "survey_hub",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jake Romer <jake@jmromer.org>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build:css": "bin/rails tailwindcss:build",
+    "format": "prettier-standard --fix"
+  },
+  "prettier": "prettier-config-standard",
+  "devDependencies": {
+    "prettier-config-standard": "^5.0.0",
+    "prettier-standard": "^16.4.1"
+  }
+}
