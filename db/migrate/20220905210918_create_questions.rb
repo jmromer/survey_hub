@@ -7,6 +7,7 @@ class CreateQuestions < ActiveRecord::Migration[7.0]
 
       t.string :text, null: false
       t.string :description
+      t.integer :responses_count, null: false, default: 0
 
       t.timestamps null: false
     end

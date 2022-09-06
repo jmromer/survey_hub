@@ -24,13 +24,5 @@ FactoryBot.define do
     survey
     text { Faker::Lorem.question }
     description { Faker::Lorem.paragraph(sentence_count: 2) }
-
-    after(:build) do |question, _evaluator|
-      yes = create(:response_option, :yes, question:)
-      rand(10).times { create(:response, response_option: yes) }
-
-      no = create(:response_option, :no, question:)
-      rand(10).times { create(:response, response_option: no) }
-    end
   end
 end

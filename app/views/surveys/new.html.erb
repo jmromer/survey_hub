@@ -1,0 +1,66 @@
+<% content_for(:breadcrumb) do  %>
+  <li class="flex">
+    <div class="flex items-center">
+      <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+      </svg>
+      <a href="<% new_survey_path %>" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
+        New Survey
+      </a>
+    </div>
+  </li>
+<% end %>
+
+<form class="space-y-6" action="<%= surveys_path %>" method="POST">
+  <div class="bg-white px-4 py-5 sm:rounded-lg sm:p-6">
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+      <div class="md:col-span-1">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">
+          New Survey
+        </h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Keep it short and sweet and preferably in Latin.
+        </p>
+      </div>
+
+      <div class="mt-5 space-y-6 md:col-span-2 md:mt-0">
+        <div class="grid grid-cols-2 gap-6">
+          <div class="col-span-3 sm:col-span-2">
+            <label for="question-text" class="block text-sm font-medium text-gray-700">
+              Question
+            </label>
+            <div class="mt-1 flex rounded-md shadow-sm">
+              <input
+                type="text"
+                name="question[text]"
+                id="question-text"
+                class="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="question-description" class="block text-sm font-medium text-gray-700">
+            Description
+          </label>
+          <div class="mt-1">
+            <textarea
+              id="question-description"
+              name="question[description]"
+              rows="3"
+              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+            </textarea>
+          </div>
+          <p class="mt-2 text-sm text-gray-500">
+            Optional: A brief explanation of the question.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-end">
+    <button type="button" class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Cancel</button>
+    <button type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+  </div>
+</form>

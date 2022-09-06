@@ -22,7 +22,17 @@
 class Question < ApplicationRecord
   belongs_to :survey
   has_many :response_options, dependent: :destroy
-  has_many :responses, through: :response_options
+  has_many :responses, dependent: :destroy
+  has_many :respondents, through: :responses
 
   validates :text, presence: true
+
+  after_create :create_default_response_options
+
+  def create_default_response_options
+    return if response_options.present?
+
+    response_options.find_or_create_by(value: "Yes")
+    response_options.find_or_create_by(value: "No")
+  end
 end

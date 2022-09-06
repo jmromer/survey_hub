@@ -23,5 +23,9 @@
 #
 class Response < ApplicationRecord
   belongs_to :response_option, counter_cache: true
+  belongs_to :question, counter_cache: true
   belongs_to :respondent, class_name: "User"
+
+  validates :respondent_id, uniqueness: { scope: :response_option_id }
+  validates :respondent_id, uniqueness: { scope: :question_id }
 end

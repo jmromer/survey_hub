@@ -24,6 +24,9 @@
 require "rails_helper"
 
 RSpec.describe Response, type: :model do
+  subject { create(:response) }
+
   it { is_expected.to belong_to(:response_option).counter_cache(true) }
+  it { is_expected.to belong_to(:question).counter_cache(true) }
   it { is_expected.to belong_to(:respondent).class_name(User.to_s) }
 end

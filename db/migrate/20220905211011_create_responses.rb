@@ -5,8 +5,10 @@ class CreateResponses < ActiveRecord::Migration[7.0]
     create_table :responses do |t|
       t.belongs_to :response_option, null: false, foreign_key: true
       t.belongs_to :respondent, null: false, foreign_key: { to_table: :users }
+      t.belongs_to :question, null: false, foreign_key: true
 
       t.index %i[response_option_id respondent_id], unique: true
+      t.index %i[question_id respondent_id], unique: true
 
       t.timestamps null: false
     end
