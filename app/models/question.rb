@@ -29,6 +29,18 @@ class Question < ApplicationRecord
 
   after_create :create_default_response_options
 
+  # Record the survey response provided by the respondent.
+  # If the respondent has already responded to this question, update their
+  # response. Otherwise persist a new record for the respondent's response.
+  def record_response(respondent:, response_option:)
+    existing_response = responses.find_by(respondent:)
+    return existing_response.update(response_option:) if existing_response.present?
+
+    responses.new(respondent:, response_option:).save
+  end
+
+  private
+
   def create_default_response_options
     return if response_options.present?
 

@@ -2,17 +2,10 @@
 
 class ResponsesController < ApplicationController
   def create
-    responses = Survey.find(params[:survey_id]).question.responses
-
-    question_response =
-      responses
-        .find_by(respondent_id: current_user.id)
-        .tap { _1&.assign_attributes(response_params) } ||
-      responses
-        .new(response_params.merge(respondent_id: current_user.id))
+    question = Survey.find(params[:survey_id]).question
 
     flash_message =
-      if question_response.save
+      if question.record_response(respondent: current_user, response_option:)
         { notice: t(:response_created) }
       else
         { alert: t(:response_not_created) }
@@ -23,7 +16,8 @@ class ResponsesController < ApplicationController
 
   private
 
-  def response_params
-    params.require(:response).permit(:response_option_id)
+  def response_option
+    param = params.require(:response).permit(:response_option_id)
+    ResponseOption.find_by(id: param[:response_option_id])
   end
 end
