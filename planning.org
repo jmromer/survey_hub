@@ -1,0 +1,106 @@
+* SimpleSurvey: Planning
+
+** Requirements
+
+*** Dependencies and packaging
+
+- Ruby 2.7.x or 3.x
+- Rails 6.x or 7.x
+- SQLite to persist data
+- All dependencies listed in the Gemfile
+- Ensure the app can be run by other developers
+- Package app as a single, Gzip-compressed tarball (.tar.gz)
+
+*** Features
+
+- A user should be able to create any number of surveys
+- A survey consists of one question represented as a single string. The answer to the question is always Yes or No.
+- The home screen of your app should show a list of surveys and a button to create a new one
+- A user can respond to a survey by clicking into it from the list mentioned above
+- A survey can be answered multiple times with a yes/no response
+- You should keep track of when each of the survey responses are saved
+- You should display the results of the survey on the home screen with the percentage of yes and no responses.
+- Authentication can be stubbed out
+
+** Entities
+
+*** User
+
+- [integer] id
+- [has-many] CreatedSurveys
+
+*** Survey
+
+- [belongs-to] Creator (User)
+- [has-one] Question
+
+*** Question
+
+- [string] text
+- [belongs-to] Survey
+- [has-many] ResponseOptions
+
+*** ResponseOption
+
+- [string] value
+- [integer] responses_count
+- [belongs-to] Question
+- [has-many] Responses
+- [has-many] Respondents [through: Responses]
+
+*** Response
+
+- [belongs-to] ResponseOption
+- [belongs-to] Respondent (User)
+
+** Views
+
+*** Survey Listing
+
+- Survey listing with current at-a-glance results for each survey
+- New Survey Button navigates to the Survey Creation view
+- Index entries are clickable and navigate to the Survey Response view
+
+*** Survey Creation
+
+- Creation success redirects to Home view
+- Creation failure renders an error message
+
+*** Survey Response
+
+- Displays a button for each of the ResponseOptions
+- Submission success redirects to Home view
+- Submission failure renders an error message
+
+** Commit Plan
+#+BEGIN: clocktable :scope subtree :maxlevel 2
+#+CAPTION: Clock summary at [2022-09-06 Tue 04:07]
+| Headline        | Time |      |
+|-----------------+------+------|
+| *Total time*      | *4:01* |      |
+|-----------------+------+------|
+| \_  Commit Plan |      | 4:01 |
+#+END:
+
+
+*** Add model layer scaffolding with specs
+:LOGBOOK:
+CLOCK: [2022-09-05 Mon 18:10]--[2022-09-05 Mon 18:36] =>  0:26
+CLOCK: [2022-09-05 Mon 17:07]--[2022-09-05 Mon 17:40] =>  0:33
+:END:
+
+- Add models, survey controller, routes, basic views
+
+*** Add Survey Listing view
+:LOGBOOK:
+CLOCK: [2022-09-05 Mon 18:47]--[2022-09-05 Mon 19:11] =>  0:24
+:END:
+*** Add Survey Detail view
+:LOGBOOK:
+CLOCK: [2022-09-05 Mon 20:21]--[2022-09-05 Mon 20:57] =>  0:36
+:END:
+*** Add Survey Creation flow
+:LOGBOOK:
+CLOCK: [2022-09-05 Mon 22:24]--[2022-09-06 Tue 00:26] =>  2:02
+:END:
+*** Refactoring
