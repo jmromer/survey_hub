@@ -1,5 +1,7 @@
 # SurveyHub
 
+![demo](app/assets/images/demo.gif)
+
 ## Dependencies
 
 - Ruby 3
