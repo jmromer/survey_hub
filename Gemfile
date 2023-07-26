@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby File.read(".ruby-version").strip
+ruby "3.1.2"
 
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
 gem "draper" # [https://github.com/arjes/draper]
@@ -26,11 +26,13 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby] # Windows does not
 # gem "kredis" Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "sassc-rails" Use Sass to process CSS
 
+# TEMP: for seed data in prod
+gem "factory_bot_rails" # [https://github.com/thoughtbot/factory_bot_rails]
+gem "faker" # [https://github.com/faker-ruby/faker]
+
 group :development, :test do
   gem "bullet" # [https://github.com/abexsoft/ruby-bullet]
   gem "dockerfile-rails", ">= 1.5"
-  gem "factory_bot_rails" # [https://github.com/thoughtbot/factory_bot_rails]
-  gem "faker" # [https://github.com/faker-ruby/faker]
   gem "jazz_fingers" # [https://github.com/plribeiro3000/jazz_fingers]
   gem "pry" # [https://github.com/pry/pry]
   gem "pry-byebug"
