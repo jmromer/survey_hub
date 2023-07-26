@@ -8,8 +8,7 @@
 - Rails 6.x or 7.x
 - SQLite to persist data
 - All dependencies listed in the Gemfile
-- Ensure the app can be run by other developers
-- Package app as a single, Gzip-compressed tarball (.tar.gz)
+- Ensure the app can be run locally by other developers
 
 *** Features
 

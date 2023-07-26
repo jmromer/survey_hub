@@ -24,7 +24,7 @@ RSpec.describe "Surveys", type: :request do
       expect(response.body).to include(survey.question.text)
     end
 
-    it "responds with 200 and the requested surveys" do
+    it "redirects if the survey is not found" do
       get "/surveys/3848"
       expect(flash.alert).to be_present
       expect(response).to redirect_to(surveys_path)
