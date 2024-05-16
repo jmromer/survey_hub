@@ -15,10 +15,7 @@ require "simplecov-console"
 SimpleCov.formatter = SimpleCov::Formatter::Console if ENV["PRINT_COVERAGE"].to_bool
 SimpleCov.start("rails") do
   add_filter %r{app/.+/application_.+\.rb}
-  add_filter %r{app/controllers/(devise|users)/.+}
-  add_filter "app/controllers/home_controller.rb"
   add_filter "app/channels/application_cable/channel.rb"
   add_filter "app/channels/application_cable/connection.rb"
   add_filter "app/helpers/"
-  add_filter "app/jobs/"
 end

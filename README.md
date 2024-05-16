@@ -31,4 +31,17 @@ To start the development server using foreman, issue `bin/dev` and navigate to
 bin/dev
 ```
 
+## Testing
+
+```shell
+% PRINT_COVERAGE=t bin/rspec
+........................
+
+Finished in 0.77 seconds (files took 3.23 seconds to load)
+24 examples, 0 failures
+
+
+COVERAGE: 100.00% -- 76/76 lines in 9 files
+```
+
 [asdf]: https://github.com/asdf-vm/asdf
