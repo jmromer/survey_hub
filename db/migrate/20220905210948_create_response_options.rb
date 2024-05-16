@@ -9,6 +9,8 @@ class CreateResponseOptions < ActiveRecord::Migration[7.0]
       t.string :description
       t.integer :responses_count, null: false, default: 0
 
+      t.index %i[value question_id], unique: true
+
       t.timestamps null: false
     end
   end

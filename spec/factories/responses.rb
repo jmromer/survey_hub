@@ -23,6 +23,7 @@
 #
 FactoryBot.define do
   factory :response do
+    question
     response_option
     respondent factory: :user
   end

@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_211011) do
     t.integer "survey_id", null: false
     t.string "text", null: false
     t.string "description"
+    t.integer "responses_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["survey_id"], name: "index_questions_on_survey_id"
@@ -28,13 +29,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_211011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_response_options_on_question_id"
+    t.index ["value", "question_id"], name: "index_response_options_on_value_and_question_id", unique: true
   end
 
   create_table "responses", force: :cascade do |t|
     t.integer "response_option_id", null: false
     t.integer "respondent_id", null: false
+    t.integer "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["question_id", "respondent_id"], name: "index_responses_on_question_id_and_respondent_id", unique: true
+    t.index ["question_id"], name: "index_responses_on_question_id"
     t.index ["respondent_id"], name: "index_responses_on_respondent_id"
     t.index ["response_option_id", "respondent_id"], name: "index_responses_on_response_option_id_and_respondent_id", unique: true
     t.index ["response_option_id"], name: "index_responses_on_response_option_id"
@@ -54,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_211011) do
 
   add_foreign_key "questions", "surveys"
   add_foreign_key "response_options", "questions"
+  add_foreign_key "responses", "questions"
   add_foreign_key "responses", "response_options"
   add_foreign_key "responses", "users", column: "respondent_id"
   add_foreign_key "surveys", "users", column: "creator_id"

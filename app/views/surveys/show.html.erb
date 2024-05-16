@@ -5,7 +5,7 @@
         <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
       </svg>
       <a href="<% survey_path(@survey) %>" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-        <%= @survey.question.text %>
+        <%= truncate(@survey.question.text) %>
       </a>
     </div>
   </li>
@@ -21,14 +21,12 @@
     </p>
   </div>
   <div class="px-4 py-5 sm:px-6">
-    <ul role="list" class="">
-      <% @survey.question.response_options.each do |response_option| %>
-        <li class="px-4 py-2 sm:px-0">
-          <button type="button" class="items-center inline-block text-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 w-32">
-            <%= response_option.value %>
-          </button>
-        </li>
+    <% @survey.question.response_options.each do |response_option| %>
+      <%= form_with url: survey_responses_url(survey_id: @survey.id), class: "inline-block" do |form| %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%= hidden_field_tag "response[response_option_id]", response_option.id %>
+        <%= response_button(response_option) %>
       <% end %>
-    </ul>
+    <% end %>
   </div>
 </div>

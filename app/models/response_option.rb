@@ -27,4 +27,6 @@ class ResponseOption < ApplicationRecord
 
   validates :value, :responses_count, presence: true
   validates :responses_count, numericality: { greater_than_or_equal_to: 0 }
+
+  validates :value, uniqueness: { scope: :question_id, case_sensitive: false }
 end

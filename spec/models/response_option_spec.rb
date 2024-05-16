@@ -23,8 +23,11 @@
 require "rails_helper"
 
 RSpec.describe ResponseOption, type: :model do
+  subject { create(:response_option) }
+
   it { is_expected.to validate_presence_of(:value) }
   it { is_expected.to validate_numericality_of(:responses_count) }
+  it { is_expected.to validate_uniqueness_of(:value).scoped_to(:question_id).case_insensitive }
 
   it { is_expected.to belong_to(:question) }
   it { is_expected.to have_many(:responses) }
