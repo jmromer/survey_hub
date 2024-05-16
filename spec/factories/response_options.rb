@@ -22,7 +22,15 @@
 #
 FactoryBot.define do
   factory :response_option do
-    value { %w[Yes No].sample }
+    value { Faker::Lorem.word }
     question
+
+    trait :yes do
+      value { "Yes" }
+    end
+
+    trait :no do
+      value { "No" }
+    end
   end
 end

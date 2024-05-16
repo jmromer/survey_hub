@@ -20,5 +20,9 @@
 FactoryBot.define do
   factory :survey do
     creator factory: :user
+
+    after(:build) do |survey, _evaluator|
+      create(:question, survey:)
+    end
   end
 end

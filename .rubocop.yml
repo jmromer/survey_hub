@@ -49,6 +49,12 @@ Metrics/BlockLength:
     - 'configure'
     - 'after_initialize'
 
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: 'comma'
 

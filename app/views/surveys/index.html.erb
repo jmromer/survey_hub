@@ -1,0 +1,66 @@
+<% content_for(:breadcrumb) do  %>
+  <li class="flex">
+    <div class="flex items-center">
+      <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+      </svg>
+      <a href="<%= surveys_path %>" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">Surveys</a>
+    </div>
+  </li>
+<% end %>
+
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-xl font-semibold text-gray-900">
+        Surveys
+      </h1>
+      <p class="mt-2 text-sm text-gray-700">
+        Click on a question to vote, or start your own!
+      </p>
+    </div>
+    <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+      <%= link_to new_survey_path do  %>
+        <button type="button" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+          Start a survey
+        </button>
+      <% end %>
+    </div>
+  </div>
+  <div class="mt-8 flex flex-col">
+    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 md:pl-0">
+                Question
+              </th>
+              <th scope="col" class="py-3.5 px-3 text-left text-sm font-semibold text-gray-900">
+                Results
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200" data-controller="surveys-list">
+            <% @surveys.each do |survey| %>
+              <% survey.results.each do |question_text, question_results| %>
+                <tr class="cursor-pointer" data-url="<%= survey_path(survey) %>" data-action="click->surveys-list#show">
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0">
+                    <%= question_text %>
+                  </td>
+                  <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                    <% question_results.each do |response_option, count, percentage| %>
+                      <span title="<%= response_option %>: <%= count %>">
+                        <%= response_option %>: <%= percentage %>%
+                      </span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
