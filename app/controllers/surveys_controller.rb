@@ -11,7 +11,7 @@ class SurveysController < ApplicationController
   end
 
   def show
-    @survey = Survey.find_by(params[:id])&.decorate
+    @survey = Survey.find_by(id: params[:id])&.decorate
     return render :show if @survey.present?
 
     redirect_to surveys_path, alert: t(:survey_not_found)

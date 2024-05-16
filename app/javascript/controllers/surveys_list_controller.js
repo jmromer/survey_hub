@@ -1,7 +1,10 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  show({ target }) {
-    window.location.href = target.closest('tr').dataset.url;;
+  static targets = ["entry"]
+
+  show(event) {
+    const surveyPath = this.entryTarget.dataset.url;
+    Turbo.visit(surveyPath);
   }
 }

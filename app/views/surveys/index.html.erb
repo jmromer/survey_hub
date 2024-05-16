@@ -41,10 +41,14 @@
               </th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-200" data-controller="surveys-list">
+          <tbody class="divide-y divide-gray-200">
             <% @surveys.each do |survey| %>
               <% survey.results.each do |question_text, question_results| %>
-                <tr class="cursor-pointer" data-url="<%= survey_path(survey) %>" data-action="click->surveys-list#show">
+                <tr class="cursor-pointer"
+                    data-url="<%= survey_path(survey) %>"
+                    data-surveys-list-target="entry"
+                    data-controller="surveys-list"
+                    data-action="click->surveys-list#show">
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 md:pl-0 cursor-pointer">
                     <%= question_text %>
                   </td>
