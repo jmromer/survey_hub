@@ -50,6 +50,7 @@ group :development do
   gem "better_errors" # [https://github.com/BetterErrors/better_errors]
   gem "binding_of_caller"
   gem "bundler-gtags", github: "jmromer/bundler-gtags" # [https://github.com/kayhide/bundler-gtags]
+  gem "foreman"
 end
 
 group :test do
